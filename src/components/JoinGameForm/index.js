@@ -42,6 +42,17 @@ const InnerForm = ({
       />
       {touched.username && errors.username && <SC.Error>{errors.username}</SC.Error>}
     </SC.FormField>
+    <SC.FormField>
+      <SC.Input
+        type="text"
+        name="username"
+        placeholder="Enter username"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.username}
+      />
+      {touched.avatar && errors.avatar && <SC.Error>{errors.avatar}</SC.Error>}
+    </SC.FormField>
     <SC.Button type="submit" disabled={values.checkLoading()}>
       Submit
     </SC.Button>
