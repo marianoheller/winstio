@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import React from 'react';
 import { render } from 'react-dom';
@@ -33,6 +34,7 @@ render(
       </ThemeProvider>
     </BrowserRouter>
   </Provider>,
+  // eslint-disable-next-line no-undef
   document.getElementById('root'),
 );
 
