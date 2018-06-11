@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const initializeDb = require('./db');
 const middleware = require('./middleware/main');
-const configSocket = require('./middleware/socketEngine');
+const configSocket = require('./middleware/socket');
 const api = require('./api');
 const config = require('./config.json');
 

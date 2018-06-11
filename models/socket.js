@@ -15,6 +15,7 @@ module.exports = {
   },
 
   joinRoom: (socket, username) => {
+    console.log(`${username} joinning room`);
     usernames[username] = username;
     let room = rooms.find( r => r.qtyPlayers < 4 );
     if (!room) {
@@ -34,6 +35,7 @@ module.exports = {
   },
 
   leaveRoom: (socket) => {
+    console.log(`${username} leaving room`);
     delete usernames[socket.username];
     // Remove player from player count in room
     const roomIndex = rooms.findIndex( r => r.id === socket.id );
