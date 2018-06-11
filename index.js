@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const initializeDb = require('./db');
 const middleware = require('./middleware/main');
+const configSocket = require('./middleware/socketEngine');
 const api = require('./api');
 const config = require('./config.json');
 
@@ -25,19 +26,13 @@ app.use(bodyParser.json({
 
 // connect to db
 initializeDb( db => {
-
 	// internal middleware
 	app.use(middleware({ config, db }));
 
 	// api router
   app.use('/api', api({ config, db }));
   
-  io.on('connection', function(client) {  
-    console.log('Client connected...');
-    client.on('join', function(data) {
-        console.log(data);
-    });
-  });
+  configSocket(io);
 
 	server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${server.address().port}`);
