@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import * as FE from '../FormElements';
 
 const formikEnhancer = withFormik({
-  displayName: 'JoinGameForm',
+  displayName: 'CreateLobbyForm',
   mapPropsToValues: props => ({ username: '', checkFetching: props.checkFetching }),
   // Validate form
   validationSchema: Yup.object().shape({
@@ -30,9 +30,9 @@ const InnerForm = ({
   handleBlur,
   handleSubmit,
 }) => (
-  <FE.Form onSubmit={handleSubmit}>
-    <FE.FormField>
-      <FE.Input
+  <SC.Form onSubmit={handleSubmit}>
+    <SC.FormField>
+      <SC.Select
         type="text"
         name="username"
         placeholder="Enter username"
@@ -40,12 +40,13 @@ const InnerForm = ({
         onBlur={handleBlur}
         value={values.username}
       />
-      {touched.avatar && errors.avatar && <FE.Error>{errors.avatar}</FE.Error>}
-    </FE.FormField>
-    <FE.Button type="submit" disabled={values.checkFetching()}>
+      {touched.avatar && errors.avatar && <SC.Error>{errors.avatar}</SC.Error>}
+    </SC.FormField>
+    <p>{values.link}</p>
+    <SC.Button type="submit" disabled={values.checkFetching()}>
       Join a game!
-    </FE.Button>
-  </FE.Form>
+    </SC.Button>
+  </SC.Form>
 );
 
 
