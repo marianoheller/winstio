@@ -51,5 +51,9 @@ module.exports = {
     socket.broadcast.emit('updategame', 'SERVER', `${socket.username}  has disconnected`);
     socket.leave(socket.room);
     return socket;
+  },
+
+  sendDataDrawn: (socket) => {
+    socket(socket.room).emit('updateDraw', socket.username, data);
   }
 };
