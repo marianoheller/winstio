@@ -1,9 +1,11 @@
 import * as socketActions from '../actions/socket';
 
 const initState = {
-  socket: null,
-  isLoading: false,
-  errors: {},
+  connection: {
+    socket: null,
+    isConnecting: false,
+    errors: {},
+  },
 };
 
 export default (state = initState, action) => {
@@ -11,23 +13,32 @@ export default (state = initState, action) => {
     case socketActions.INIT_SOCKET.REQUEST:
       return {
         ...state,
-        // socket: null,
-        isLoading: true,
-        errors: {},
+        connection: {
+          ...state.connection,
+          // socket: null,
+          isConnecting: true,
+          errors: {},
+        },
       };
     case socketActions.INIT_SOCKET.SUCCESS:
       return {
         ...state,
-        socket: action.socket,
-        isLoading: false,
-        errors: {},
+        connection: {
+          ...state.connection,
+          socket: action.socket,
+          isConnecting: false,
+          errors: {},
+        },
       };
     case socketActions.INIT_SOCKET.FAILURE:
       return {
         ...state,
-        socket: null,
-        isLoading: false,
-        errors: action.errors,
+        connection: {
+          ...state.connection,
+          socket: null,
+          isConnecting: false,
+          errors: action.errors,
+        },
       };
     default:
       return state;

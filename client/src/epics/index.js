@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
 
-import socket from './socket';
+import socketKeepAlive from './socketKeepAlive';
 
-export default combineEpics(socket);
+export default combineEpics(socketKeepAlive);
