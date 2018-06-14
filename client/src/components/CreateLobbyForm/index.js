@@ -30,9 +30,9 @@ const InnerForm = ({
   handleBlur,
   handleSubmit,
 }) => (
-  <SC.Form onSubmit={handleSubmit}>
-    <SC.FormField>
-      <SC.Select
+  <FE.Form onSubmit={handleSubmit}>
+    <FE.FormField>
+      <FE.Select
         type="text"
         name="username"
         placeholder="Enter username"
@@ -40,13 +40,13 @@ const InnerForm = ({
         onBlur={handleBlur}
         value={values.username}
       />
-      {touched.avatar && errors.avatar && <SC.Error>{errors.avatar}</SC.Error>}
-    </SC.FormField>
+      {touched.avatar && errors.avatar && <FE.Error>{errors.avatar}</FE.Error>}
+    </FE.FormField>
     <p>{values.link}</p>
-    <SC.Button type="submit" disabled={values.checkFetching()}>
+    <FE.Button type="submit" disabled={values.checkFetching()}>
       Join a game!
-    </SC.Button>
-  </SC.Form>
+    </FE.Button>
+  </FE.Form>
 );
 
 
@@ -60,7 +60,6 @@ InnerForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
 };
 
 

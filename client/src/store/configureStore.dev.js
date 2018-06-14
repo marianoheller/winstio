@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import logger from 'redux-logger';
