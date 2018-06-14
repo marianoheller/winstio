@@ -12,17 +12,18 @@ class Game extends Component {
   }
 
   handleLeaveRoom() {
-    const { leaveRoom, roomId } = this.props;
-    leaveRoom(roomId);
+    const { leaveRoom, roomId, username } = this.props;
+    leaveRoom(username, roomId);
   }
 
   render() {
-    const { roomId } = this.props;
+    const { roomId, username } = this.props;
     if (!roomId) return <Redirect to="/" />;
 
     return (
       <div>
         GAME
+        <p>Username: {username}</p>
         <p>Room id: {roomId}</p>
         <button onClick={this.handleLeaveRoom}>Leave game</button>
       </div>
@@ -30,8 +31,11 @@ class Game extends Component {
   }
 }
 
-
 Game.propTypes = {
+  username: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   roomId: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
@@ -41,6 +45,7 @@ Game.propTypes = {
 
 const mapStateToProps = ({ room }) => ({
   roomId: room.roomId,
+  username: room.username,
 });
 
 const mapDispatchToProps = dispatch => ({
