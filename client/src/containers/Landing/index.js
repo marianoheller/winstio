@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import JoinGameForm from '../../components/JoinGameForm';
 
@@ -24,6 +25,8 @@ class Landing extends Component {
   }
 
   render() {
+    const { roomId } = this.props;
+    if (roomId) return <Redirect to="/game" />;
     return (
       <div>
         LANDING!
@@ -38,11 +41,16 @@ class Landing extends Component {
 
 Landing.propTypes = {
   serverStatus: PropTypes.bool.isRequired,
+  roomId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   joinRoom: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ socket }) => ({
+const mapStateToProps = ({ socket, room }) => ({
   serverStatus: Boolean(socket.connection.socket),
+  roomId: room.roomId,
 });
 
 const mapDispatchToProps = dispatch => ({
