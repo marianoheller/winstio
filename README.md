@@ -15,6 +15,7 @@ Basic events:
 <- `roomJoined`: `{ roomId }`
 <- `joinRoomFailed`: `{ error }`
 -> `leaveRoom`: `{ username, roomId }`
+<- `roomLeft`: `{ username }`
 
 <- `beginTurn`: `{ username }`
 <- `presentWords`: `{ words }`

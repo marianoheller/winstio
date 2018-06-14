@@ -29,6 +29,7 @@ module.exports = {
 
     socket.join(room.id);
     socket.emit('updategame', 'SERVER', `'you have connected to ${room.id}`);
+    socket.emit('roomJoined', room.id);
     socket.broadcast.to(room.id).emit('updategame', 'SERVER', `${username} has connected to this room`);
     socket.emit('updaterooms', rooms, room.id);
     return socket;
@@ -48,6 +49,7 @@ module.exports = {
     }
 
     io.sockets.emit('updateusers', usernames);
+    socket.emit('roomLeft');
     socket.broadcast.emit('updategame', 'SERVER', `${socket.username}  has disconnected`);
     socket.leave(socket.room);
     return socket;
