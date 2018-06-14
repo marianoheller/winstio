@@ -6,8 +6,8 @@ import { Redirect } from 'react-router-dom';
 import * as socketActions from '../../actions/socket';
 
 class Game extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleLeaveRoom = this.handleLeaveRoom.bind(this);
   }
 
@@ -19,7 +19,6 @@ class Game extends Component {
   render() {
     const { roomId, username } = this.props;
     if (!roomId) return <Redirect to="/" />;
-
     return (
       <div>
         GAME
@@ -35,12 +34,17 @@ Game.propTypes = {
   username: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
-  ]).isRequired,
+  ]),
   roomId: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
-  ]).isRequired,
+  ]),
   leaveRoom: PropTypes.func.isRequired,
+};
+
+Game.defaultProps = {
+  username: null,
+  roomId: 'asasd',
 };
 
 const mapStateToProps = ({ room }) => ({
@@ -52,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
   leaveRoom: roomId => dispatch(socketActions.leaveRoom.request(roomId)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(Game);

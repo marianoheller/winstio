@@ -8,8 +8,8 @@ import JoinGameForm from '../../components/JoinGameForm';
 import * as socketActions from '../../actions/socket';
 
 class Landing extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.checkStatus = this.checkStatus.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -44,8 +44,12 @@ Landing.propTypes = {
   roomId: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
-  ]).isRequired,
+  ]),
   joinRoom: PropTypes.func.isRequired,
+};
+
+Landing.defaultProps = {
+  roomId: null,
 };
 
 const mapStateToProps = ({ socket, room }) => ({
@@ -57,4 +61,4 @@ const mapDispatchToProps = dispatch => ({
   joinRoom: username => dispatch(socketActions.joinRoom.request(username)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Landing);
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(Landing);
