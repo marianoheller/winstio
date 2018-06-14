@@ -9,6 +9,6 @@ export default class Landing extends Component {
         LANDING!
         <JoinGameForm checkFetching={() => false} />
       </div>
-    )
+    );
   }
 }

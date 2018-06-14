@@ -10,6 +10,6 @@ export default function configureStore(preloadedState) {
     preloadedState,
     applyMiddleware(epicMiddleware),
   );
-  
+
   return store;
 }

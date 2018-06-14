@@ -3,6 +3,7 @@ import * as socketActions from '../actions/socket';
 const initState = {
   connection: {
     socket: null,
+    retry: true,
     isConnecting: false,
     errors: {},
   },

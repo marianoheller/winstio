@@ -30,8 +30,9 @@ const connectSocket = action$ => action$
   ));
 
 
-const retryConnection = action$ => action$
+const retryConnection = (action$, store) => action$
   .ofType(socketActions.INIT_SOCKET.FAILURE)
+  .filter(store.getState().socket.connection.retry)
   .switchMap(() => (
     Observable.of(socketActions.init.request()).delay(10000)
   ));

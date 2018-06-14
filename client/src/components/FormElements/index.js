@@ -23,7 +23,7 @@ export const Error = styled.div`
   justify-content: flex-end;
 `;
 
-export const Input = styled((props => <input {...props}/>))`
+export const Input = styled((props => <input {...props} />))`
   width: 100%;
 `;
 
