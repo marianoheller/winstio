@@ -10,12 +10,13 @@ From server: <-
 
 Basic events:
 -> `connect`:
+
 -> `joinRoom`: `{ username }`
+<- `roomJoined`: `{ roomId }`
+<- `joinRoomFailed`: `{ error }`
+-> `leaveRoom`: `{ username, roomId }`
 
-Room events:
--> `leaveRoom`: `{ username }`
-
-<- `beginTurn`: `{ indexUser }`
+<- `beginTurn`: `{ username }`
 <- `presentWords`: `{ words }`
 -> `pickWord`: `{ word }`
 <- `timerBegin`: `{ words }`
