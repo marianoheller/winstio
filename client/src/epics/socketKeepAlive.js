@@ -7,6 +7,7 @@ import { merge } from 'rxjs/observable/merge';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
@@ -14,6 +15,8 @@ import 'rxjs/add/operator/switchMap';
 
 
 import * as socketActions from '../actions/socket';
+
+const RETRY_INTERVAL_MS = 10000;
 
 
 const connectSocket = action$ => action$
@@ -32,9 +35,9 @@ const connectSocket = action$ => action$
 
 const retryConnection = (action$, store) => action$
   .ofType(socketActions.INIT_SOCKET.FAILURE)
-  .filter(store.getState().socket.connection.retry)
+  .filter(() => store.getState().socket.connection.retry)
   .switchMap(() => (
-    Observable.of(socketActions.init.request()).delay(10000)
+    Observable.of(socketActions.init.request()).delay(RETRY_INTERVAL_MS)
   ));
 
 
