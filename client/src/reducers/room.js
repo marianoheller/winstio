@@ -22,6 +22,11 @@ export default (state = initState, action) => {
         ...state,
         roomId: null,
       };
+    case socketActions.LEAVE_ROOM.REQUEST:
+      return {
+        ...state,
+        roomId: null,
+      };
     default:
       return state;
   }
